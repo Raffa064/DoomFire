@@ -6,8 +6,11 @@ var width = 30
 var height = 30
 var pixelSize = 0
 
-var canvas = document.getElementById('canvas')
+var canvas = document.createElement('canvas')
 var context = canvas.getContext("2d")
+document.querySelector("#fireCanvas").appendChild(canvas)
+canvas.width = 300
+canvas.height = 300
 pixelSize = canvas.width/(width-1)
 createFireDataStructure(width, height)
 createFireSource()
