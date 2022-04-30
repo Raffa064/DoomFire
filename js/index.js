@@ -2,13 +2,13 @@ const fireColorsPalette = [{"r":7,"g":7,"b":7},{"r":31,"g":7,"b":7},{"r":47,"g":
 
 
 var fireDataStructure = []
-var width = 16
-var height = 16
+var width = 30
+var height = 30
 
 var canvas = document.getElementById('canvas')
 createFireDataStructure(width, height)
 createFireSource()
-setInterval(calculateFirePropagation, 10)
+setInterval(calculateFirePropagation, 100)
 
 function createFireDataStructure(w, h) {
     for (let i = 0; i <= w * h; i++) {
@@ -27,11 +27,11 @@ function calculateIntensityPerPixel(currentPixel) {
     if (bellowPixelIndex >= width * height) {
         return
     }
-    var decay = Math.floor(Math.random()*3) //numero inteiro de 0 a 2
+    var decay = Math.floor(Math.random()*6) //numero inteiro de 0 a 2
     var bellowPixelFireIntensity = fireDataStructure[bellowPixelIndex]
     var newFireIntensity = bellowPixelFireIntensity - decay
     newFireIntensity = Math.max(0, newFireIntensity)
-    fireDataStructure[currentPixel] = newFireIntensity
+    fireDataStructure[currentPixel+decay] = newFireIntensity
 }
 
 function calculateFirePropagation() {
@@ -48,17 +48,12 @@ function renderFire() {
     for (let y = 0; y < height; y++) {
         html += '<tr>'
         for (let x = 0; x < width; x++) {
-            var color = fireColorsPalette[debug('color id', fireDataStructure[y*width+x])]
+            var color = fireColorsPalette[fireDataStructure[y*width+x]]
             html += '<td class="pixel" style="background-color: rgb('+color.r+','+color.g+','+color.b+');"></td>'
         }
         html += "</tr>"
     }
     html += '</table>'
     canvas.innerHTML = html
-}
-
-function debug(text, value) {
-    console.log(text+': '+value)
-    return value;
 }
 
