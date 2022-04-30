@@ -14,6 +14,22 @@ document.querySelector('#fireCanvas').appendChild(canvas)
 canvas.width = 300
 canvas.height = 300
 pixelSize = canvas.width/(width-1)
+canvas.addEventListener('touchmove', function(e) {
+    var rect = canvas.getBoundingClientRect()
+    var touchPos = {
+        x: Math.floor((e.touches[0].clientX - rect.left) / pixelSize),
+        y: Math.floor((e.touches[0].clientY - rect.top) / pixelSize)
+    }
+    draw(touchPos)
+}, true)
+canvas.addEventListener('mousemove', function(e) {
+    var rect = canvas.getBoundingClientRect()
+    var mousePos = {
+        x: Math.floor((e.clientX - rect.left) / pixelSize),
+        y: Math.floor((e.clientY - rect.top) / pixelSize)
+    }
+    draw(mousePos)
+}, true)
 var selectColorMode = document.getElementById('selectColorMode')
 selectColorMode.onchange = function() {
     colorMode = selectColorMode.options[selectColorMode.options.selectedIndex].value
@@ -24,7 +40,16 @@ windDirectionSlider.oninput = function() {
 }
 createFireDataStructure(width, height)
 createFireSource()
-setInterval(calculateFirePropagation, 60)
+setInterval(calculateFirePropagation, )
+
+function draw(pos) {
+    for (let x = -2; x < 2; x++) {
+        for (let y = -2; y < 2; y++) {
+            var center = (pos.y * width + pos.x)
+            fireDataStructure[center + (y + Math.floor(-1.5 + Math.random() * 3)) * width + x] = Math.floor(21+Math.random()*15);
+        }
+    }
+}
 
 function createFireDataStructure(w, h) {
     for (let i = 0; i < w * h; i++) {
