@@ -23,8 +23,12 @@ button {
     border-radius: 2pt;
 }
 
-button:active{
+button:active {
     border: solid;
     border-color: #777;
     border-width: 1pt;
+}
+
+button:focus {
+    outline: none;
 }
