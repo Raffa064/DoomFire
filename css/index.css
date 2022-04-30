@@ -9,6 +9,10 @@ canvas, .centralized {
     margin-right: 10%;
 }
 
+div.uiDiv {
+    margin-bottom: 10px;
+}
+
 .uiText {
     color: #aaa;
     margin: none;
@@ -32,4 +36,9 @@ button:active {
 
 button:focus {
     outline: none;
+}
+
+.slider {
+    width: 100%;
+    height: 25px;
 }

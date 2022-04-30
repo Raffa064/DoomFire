@@ -2,17 +2,22 @@ const fireColorsPalette = [{"r":7,"g":7,"b":7},{"r":31,"g":7,"b":7},{"r":47,"g":
 
 
 var fireDataStructure = []
-var width = 30
-var height = 30
+var width = 60
+var height = 60
 var pixelSize = 0
 var colorMode = 0
+var windDirection = 1
 
 var canvas = document.createElement('canvas')
 var context = canvas.getContext("2d")
-document.querySelector("#fireCanvas").appendChild(canvas)
+document.querySelector('#fireCanvas').appendChild(canvas)
 canvas.width = 300
 canvas.height = 300
 pixelSize = canvas.width/(width-1)
+var windDirectionSlider = document.getElementById('windDirection') 
+windDirectionSlider.oninput = function() {
+    windDirection = parseInt(this.value)
+}
 createFireDataStructure(width, height)
 createFireSource()
 setInterval(calculateFirePropagation, 60)
@@ -50,11 +55,21 @@ function calculateIntensityPerPixel(currentPixel) {
     if (bellowPixelIndex >= width * height) {
         return
     }
-    var decay = Math.floor(Math.random()*6) //numero inteiro de 0 a 2
+    var decay = Math.floor(Math.random()*3) //numero inteiro de 0 a 2
     var bellowPixelFireIntensity = fireDataStructure[bellowPixelIndex]
     var newFireIntensity = bellowPixelFireIntensity - decay
     newFireIntensity = Math.max(0, newFireIntensity)
-    fireDataStructure[currentPixel] = newFireIntensity
+    switch(windDirection) {
+        case 0:
+            fireDataStructure[currentPixel - decay] = newFireIntensity
+            break
+        case 1:
+            fireDataStructure[currentPixel] = newFireIntensity
+            break
+        case 2:
+            fireDataStructure[currentPixel + decay] = newFireIntensity
+            break
+    }
 }
 
 function calculateFirePropagation() {

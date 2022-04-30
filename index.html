@@ -9,14 +9,18 @@
     <body>
         <div id="fireCanvas"></div>
         <div class="centralized">
-            <span class="uiText">Fire force</span>
+            <span class="uiText">Fire force:</span>
             <div>
             <button onclick="updateFireSource(-1)">-</button>
             <span class="uiText" id="fireForce">36</span>
             <button onclick="updateFireSource(+1)">+</button>
             </div>
-            <span class="uiText">Inverse color mode:</span>
-            <input type="checkbox" onchange="toggleColorMode()"/>
+            <div class="uiDiv">
+                <span class="uiText">Inverse color mode: </span>
+                <input type="checkbox" onchange="toggleColorMode()"></input>
+            </div>
+            <span class="uiText">Wind direction:</span>
+            <input type="range" class="slider" id="windDirection" min="0" max="2" value="1"/></input>
         </div>
         <script src="./js/index.js"></script>
     </body>
