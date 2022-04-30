@@ -11,19 +11,31 @@
         <div id="fireCanvas"></div>
         <div class="centralized">
             <span class="uiText">Fire force:</span>
-            <div>
-            <button onclick="updateFireSource(-1)">-</button>
-            <span class="uiText" id="fireForce">36</span>
-            <button onclick="updateFireSource(+1)">+</button>
-            <button onclick="updateFireSource(-100)">min</button>
-            <button onclick="updateFireSource(+100)">max</button>
+            <div class="uiDiv">
+                <button onclick="updateFireSource(-1)">-</button>
+                <span class="uiText" id="fireForce">36</span>
+                <button onclick="updateFireSource(+1)">+</button>
+                <button onclick="updateFireSource(-100)">min</button>
+                <button onclick="updateFireSource(+100)">max</button>
             </div>
             <div class="uiDiv">
-                <span class="uiText">Inverse color mode: </span>
-                <input type="checkbox" onchange="toggleColorMode()"></input>
+                <span class="uiText">Color mode: </span>
+                <div>
+                    <select name="selectColorMode" id="selectColorMode">
+                        <option value="1">Default</option>
+                        <option value="2">Blue</option>
+                        <option value="3">Green</option>
+                        <option value="4">Gray</option>
+                        <option value="5">Only red</option>
+                        <option value="6">Only green</option>
+                        <option value="7">Only blue</option>
+                    </select>
+                </div>
             </div>
-            <span class="uiText">Wind direction:</span>
-            <input type="range" class="slider" id="windDirection" min="0" max="2" value="1"/></input>
+            <div class="uiDiv">
+                <span class="uiText">Wind direction:</span>
+                <input type="range" class="slider" id="windDirection" min="0" max="2" value="1"/></input>
+            </div>
         </div>
         <script src="./js/index.js"></script>
     </body>

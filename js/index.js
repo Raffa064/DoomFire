@@ -5,7 +5,7 @@ var fireDataStructure = []
 var width = 80
 var height = 80
 var pixelSize = 0
-var colorMode = 0
+var colorMode = "1"
 var windDirection = 1
 
 var canvas = document.createElement('canvas')
@@ -14,6 +14,10 @@ document.querySelector('#fireCanvas').appendChild(canvas)
 canvas.width = 300
 canvas.height = 300
 pixelSize = canvas.width/(width-1)
+var selectColorMode = document.getElementById('selectColorMode')
+selectColorMode.onchange = function() {
+    colorMode = selectColorMode.options[selectColorMode.options.selectedIndex].value
+}
 var windDirectionSlider = document.getElementById('windDirection') 
 windDirectionSlider.oninput = function() {
     windDirection = parseInt(this.value)
@@ -21,11 +25,6 @@ windDirectionSlider.oninput = function() {
 createFireDataStructure(width, height)
 createFireSource()
 setInterval(calculateFirePropagation, 60)
-
-function toggleColorMode() {
-    colorMode++
-    colorMode %= 2; 
-}
 
 function createFireDataStructure(w, h) {
     for (let i = 0; i < w * h; i++) {
@@ -86,11 +85,27 @@ function renderFire() {
         for (let x = 0; x < width; x++) {
             var color = fireColorsPalette[fireDataStructure[y*width+x]]
             switch(colorMode) {
-                case 0:
+                case '1':
                     context.fillStyle = 'rgb('+color.r+','+color.g+','+color.b+')'
                     break;
-                case 1:
+                case '2':
                     context.fillStyle = 'rgb('+color.b+','+color.g+','+color.r+')'
+                    break;
+                case '3':
+                    context.fillStyle = 'rgb('+color.b+','+color.r+','+color.g+')'
+                    break;
+                case '4':
+                    var max = Math.max(color.r, Math.max(color.g, color.b))
+                    context.fillStyle = 'rgb('+max+','+max+','+max+')'
+                    break;
+                case '5':
+                    context.fillStyle = 'rgb('+color.r+','+0+','+0+')'
+                    break;
+                case '6':
+                    context.fillStyle = 'rgb('+0+','+color.g+','+0+')'
+                    break;
+                case '7':
+                    context.fillStyle = 'rgb('+0+','+0+','+color.b+')'
                     break;
             }
             context.fillRect(x*pixelSize, y*pixelSize, pixelSize, pixelSize)
