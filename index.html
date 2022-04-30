@@ -8,6 +8,16 @@
     </head>
     <body>
         <div id="fireCanvas"></div>
+        <div class="centralized">
+            <span class="uiText">Fire force</span>
+            <div>
+            <button onclick="updateFireSource(-1)">-</button>
+            <span class="uiText" id="fireForce">36</span>
+            <button onclick="updateFireSource(+1)">+</button>
+            </div>
+            <span class="uiText">Inverse color mode:</span>
+            <input type="checkbox" onchange="toggleColorMode()"/>
+        </div>
         <script src="./js/index.js"></script>
     </body>
 </html>

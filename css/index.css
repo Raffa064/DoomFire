@@ -1,3 +1,30 @@
 body {
     background-color: #222;
 }
+
+canvas, .centralized {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.uiText {
+    color: #aaa;
+    margin: none;
+    padding: none;
+}
+
+button {
+    width: 50px;
+    height: 50px;
+    color: #aaa;
+    background-color: #444;
+    border: none;
+    border-radius: 2pt;
+}
+
+button:active{
+    border: solid;
+    border-color: #777;
+    border-width: 1pt;
+}

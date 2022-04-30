@@ -5,6 +5,7 @@ var fireDataStructure = []
 var width = 30
 var height = 30
 var pixelSize = 0
+var colorMode = 0
 
 var canvas = document.createElement('canvas')
 var context = canvas.getContext("2d")
@@ -16,6 +17,11 @@ createFireDataStructure(width, height)
 createFireSource()
 setInterval(calculateFirePropagation, 60)
 
+function toggleColorMode() {
+    colorMode++
+    colorMode %= 2; 
+}
+
 function createFireDataStructure(w, h) {
     for (let i = 0; i < w * h; i++) {
         fireDataStructure[i] = 0
@@ -24,7 +30,18 @@ function createFireDataStructure(w, h) {
 
 function createFireSource() {
     for (let x = 0; x < width; x++) {
-        fireDataStructure[(width * (height-1)) + x] = 36
+        fireDataStructure[(width * (height - 1)) + x] = 36
+    }
+}
+
+function updateFireSource(number) {
+    var fireForce = document.getElementById('fireForce')
+    for (let x = 0; x < width; x++) {
+        var index = (width * (height - 1)) + x
+        fireDataStructure[index] += number
+        fireDataStructure[index] = Math.max(0, Math.min(36, fireDataStructure[index]))
+        fireForce.textContent = fireDataStructure[index]
+        
     }
 }
 
@@ -53,7 +70,14 @@ function renderFire() {
     for (let y = 0; y < height; y++) {
         for (let x = 0; x < width; x++) {
             var color = fireColorsPalette[fireDataStructure[y*width+x]]
-            context.fillStyle = 'rgb('+color.r+','+color.g+','+color.b+')'
+            switch(colorMode) {
+                case 0:
+                    context.fillStyle = 'rgb('+color.r+','+color.g+','+color.b+')'
+                    break;
+                case 1:
+                    context.fillStyle = 'rgb('+color.b+','+color.g+','+color.r+')'
+                    break;
+            }
             context.fillRect(x*pixelSize, y*pixelSize, pixelSize, pixelSize)
         }
     }
