@@ -2,8 +2,8 @@ const fireColorsPalette = [{"r":7,"g":7,"b":7},{"r":31,"g":7,"b":7},{"r":47,"g":
 
 
 var fireDataStructure = []
-var width = 60
-var height = 60
+var width = 80
+var height = 80
 var pixelSize = 0
 var colorMode = 0
 var windDirection = 1

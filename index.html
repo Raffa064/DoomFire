@@ -7,6 +7,7 @@
         <title>Doom fire</title>
     </head>
     <body>
+        <h1 class="centralized">Doom fire <span class="inline-subtitle">coded by Raffa064</span></h1>
         <div id="fireCanvas"></div>
         <div class="centralized">
             <span class="uiText">Fire force:</span>
@@ -14,6 +15,8 @@
             <button onclick="updateFireSource(-1)">-</button>
             <span class="uiText" id="fireForce">36</span>
             <button onclick="updateFireSource(+1)">+</button>
+            <button onclick="updateFireSource(-100)">min</button>
+            <button onclick="updateFireSource(+100)">max</button>
             </div>
             <div class="uiDiv">
                 <span class="uiText">Inverse color mode: </span>

@@ -3,6 +3,14 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+h1 {
+    color: #aaa;
+}
+
+.inline-subtitle {
+    font-size: 10pt;
+}
+
 canvas, .centralized {
     width: 80%;
     margin-left: 10%;
