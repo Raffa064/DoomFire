@@ -40,7 +40,9 @@ With that, adding other forms of input to the canvas is simple, bud it can too b
 
 <a name="smooth"></a>
 ## Smooth color effect 
-![algorithm](/imgs/algorithm.gif)
+<div style="margin-left: auto; margin-right: auto;">
+    ![algorithm](/imgs/algorithm.gif)
+</div>
 
 For take the smooth color and the movement effect, basically the pixels gets the bottom pixel value decreased by an decay variable that receive an random value in range of 0 to 2.
 
