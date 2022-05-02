@@ -36,5 +36,6 @@ function createInputListener(listerningObject, callbackNames) {
     return inputListener
 }
 ```
+With that, adding other forms of input to the canvas is simple, bud it can too be used for other elements.
 
 You can run this project [here](https://raffa064.github.io/DoomFire/)
