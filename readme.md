@@ -9,16 +9,6 @@ This project is based by [Filipe Deschamps's code](https://github.com/filipedesc
 
 For this projects i choose to use the Factory and Observer design patterns:
 ```javascript
-function createInputListener(listerningObject, callbackNames) {
-    var inputListener = createObserverPattern()
-    for (let callback in callbackNames) {
-        listerningObject.addEventListener(callbackNames[callback], function(e) {
-            inputListener.notifyAll({ element: listerningObject, whitch: callbackNames[callback], event: e })
-        }, true)
-    }
-    return inputListener
-}
-
 function createObserverPattern() {
     var subject = {}
     subject.observers = []
@@ -34,6 +24,16 @@ function createObserverPattern() {
         }
     }
     return subject
+}
+
+function createInputListener(listerningObject, callbackNames) {
+    var inputListener = createObserverPattern()
+    for (let callback in callbackNames) {
+        listerningObject.addEventListener(callbackNames[callback], function(e) {
+            inputListener.notifyAll({ element: listerningObject, whitch: callbackNames[callback], event: e })
+        }, true)
+    }
+    return inputListener
 }
 ```
 

@@ -61,17 +61,6 @@ createFireDataStructure(width, height) //create the fire structure array
 createFireSource() //start an fire source in the bottom
 setInterval(calculateFirePropagation, 60) //start per frame updates
 
-//Create an input listener with Observer design pattern
-function createInputListener(listerningObject, callbackNames) {
-    var inputListener = createObserverPattern()
-    for (let callback in callbackNames) {
-        listerningObject.addEventListener(callbackNames[callback], function(e) {
-            inputListener.notifyAll({ element: listerningObject, whitch: callbackNames[callback], event: e })
-        }, true)
-    }
-    return inputListener
-}
-
 //Create an object with Observer design pattern structure
 function createObserverPattern() {
     var subject = {}
@@ -88,6 +77,17 @@ function createObserverPattern() {
         }
     }
     return subject
+}
+
+//Create an input listener with Observer design pattern
+function createInputListener(listerningObject, callbackNames) {
+    var inputListener = createObserverPattern()
+    for (let callback in callbackNames) {
+        listerningObject.addEventListener(callbackNames[callback], function(e) {
+            inputListener.notifyAll({ element: listerningObject, whitch: callbackNames[callback], event: e })
+        }, true)
+    }
+    return inputListener
 }
 
 //Draw an random square in a position of the canvas (Used when  user touch or mouse dragged)
