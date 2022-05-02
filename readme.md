@@ -7,4 +7,24 @@ This algorithm is very easy to add winds, and have a beautiful result.
 It basically get the bottomside pixels value and decrease it to take the smoth color effect.
 This project is based by [Filipe Deschamps's code](https://github.com/filipedeschamps/doom-fire-algorithm).
 
+For this projects i choose to use the Factory and Observer design patterns:
+```javascript
+function createObserverPattern() {
+    var subject = {}
+    subject.observers = []
+    subject.subscribe = function(observer) {
+        this.observers.push(observer)
+    }
+    subject.unsubscribe = function(observer) {
+        this.observers.splice(observer)
+    }
+    subject.notifyAll = function(command) {
+        for (let observer in this.observers) {
+            this.observers[observer].update(command)
+        }
+    }
+    return subject
+}
+```
+
 You can run this project [here](https://raffa064.github.io/DoomFire/)
