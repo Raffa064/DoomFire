@@ -8,12 +8,12 @@ var pixelSize = 0 //size of the pixels in the canvas (auto)
 var colorMode = "1" //color effect mode, used to apply color effects
 var windDirection = 1 //direction of the fire, can be 0 (left), 1 (up), or 2 (right)
 
+//User interface
 var canvas = document.createElement('canvas')
 canvas.width = 300
 canvas.height = 300
 var context = canvas.getContext("2d")
 document.querySelector('#fireCanvas').appendChild(canvas)
-
 var selectColorMode = document.getElementById('selectColorMode')
 selectColorMode.onchange = function() {
     colorMode = selectColorMode.options[selectColorMode.options.selectedIndex].value
@@ -23,7 +23,7 @@ windDirectionSlider.oninput = function() {
     windDirection = parseInt(this.value)
 }
 var canvasInputListener = createInputListener(canvas, ['mousemove', 'touchmove'])
-mouseInput = {
+mouseInput = { //Desktop input
     update: function(command) {
         var element = command.element
         var whitch = command.whitch
@@ -38,7 +38,7 @@ mouseInput = {
         }
     }
 }
-var touchInput = {
+var touchInput = { //Mobile input
     update: function(command) {
         var element = command.element
         var whitch = command.whitch
@@ -56,10 +56,12 @@ var touchInput = {
 canvasInputListener.subscribe(mouseInput)
 canvasInputListener.subscribe(touchInput)
 
-createFireDataStructure(width, height)
-createFireSource()
-setInterval(calculateFirePropagation, 60)
+//Fire initialization
+createFireDataStructure(width, height) //create the fire structure array
+createFireSource() //start an fire source in the bottom
+setInterval(calculateFirePropagation, 60) //start per frame updates
 
+//Create an input listener with Observer design pattern
 function createInputListener(listerningObject, callbackNames) {
     var inputListener = createObserverPattern()
     for (let callback in callbackNames) {
@@ -70,6 +72,7 @@ function createInputListener(listerningObject, callbackNames) {
     return inputListener
 }
 
+//Create an object with Observer design pattern structure
 function createObserverPattern() {
     var subject = {}
     subject.observers = []
@@ -87,6 +90,7 @@ function createObserverPattern() {
     return subject
 }
 
+//Draw an random square in a position of the canvas (Used when  user touch or mouse dragged)
 function draw(pos) {
     pixelSize = canvas.width/(width-1)
     for (let x = -2; x < 2; x++) {
@@ -99,18 +103,21 @@ function draw(pos) {
     }
 }
 
+//Create the fire structure array 
 function createFireDataStructure(w, h) {
     for (let i = 0; i < w * h; i++) {
         fireDataStructure[i] = 0
     }
 }
 
+//Create the fire source
 function createFireSource() {
     for (let x = 0; x < width; x++) {
         fireDataStructure[(width * (height - 1)) + x] = 36
     }
 }
 
+//Increase or decrease a number of intensity in the fire source
 function updateFireSource(number) {
     var fireForce = document.getElementById('fireForce')
     for (let x = 0; x < width; x++) {
@@ -122,6 +129,7 @@ function updateFireSource(number) {
     }
 }
 
+//The base of the algorithm, it's used for calculate the intensity of the pixels based by the next line pixels
 function calculateIntensityPerPixel(currentPixel) {
     var bellowPixelIndex = currentPixel + width
     if (bellowPixelIndex >= width * height) {
@@ -144,6 +152,7 @@ function calculateIntensityPerPixel(currentPixel) {
     }
 }
 
+//Apply the intensity calculation for arch pixels and render the result
 function calculateFirePropagation() {
     for (let x = 0; x < width; x++) {
         for (let y = 0; y < height; y++) {
@@ -153,6 +162,7 @@ function calculateFirePropagation() {
     renderFire()
 }
 
+//Renderization of the fire
 function renderFire() {
     pixelSize = canvas.width/width
     for (let y = 0; y < height; y++) {
