@@ -1,4 +1,4 @@
-# simple Doom fire algorithm
+# Simple Doom fire algorithm
 
 ![screenshot](/imgs/fire-image.jpg)
 
