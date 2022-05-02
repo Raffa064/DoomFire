@@ -39,9 +39,11 @@ function createInputListener(listerningObject, callbackNames) {
 With that, adding other forms of input to the canvas is simple, bud it can too be used for other elements.
 
 <a name="smooth"></a>
-## Smooth color effect 
-<img  style="width: 60%; margin-left: 20%; margin-right: 20%;" src="./imgs/algorithm.gif">
-    
+## Smooth color effect
+|How it work|
+|:----------:|
+|![algorithm](/imgs/algorithm.gif)|
+
 For take the smooth color and the movement effect, basically the pixels gets the bottom pixel value decreased by an decay variable that receive an random value in range of 0 to 2.
 
 For given the wind effect you only need to add or dec the decay value in the index of the current calculating pixel, remebering that the decay is an float value, and you need to add her using the floor function.
