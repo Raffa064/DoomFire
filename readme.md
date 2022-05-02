@@ -4,7 +4,7 @@
 
 I maked this Doom game fire algorithm for learn more of the javascript lenguage, in that i am a beginner.
 This algorithm is very easy to add winds, and have a beautiful result. 
-It basically get the bottomside pixels value and decrease it to take the [smoth color effect](#smoth).
+It basically get the bottomside pixels value and decrease it to take the [smooth color effect](#smooth).
 This project is based by [Filipe Deschamps's code](https://github.com/filipedeschamps/doom-fire-algorithm).
 
 For this projects i choose to use the Factory and Observer design patterns:
@@ -38,7 +38,11 @@ function createInputListener(listerningObject, callbackNames) {
 ```
 With that, adding other forms of input to the canvas is simple, bud it can too be used for other elements.
 
+<a name="smooth"></a>
 ## Smooth color effect 
-<a name="smoth"></a>
+![algorithm](/imgs/algorithm.gif)
+
+For tahe the smooth color and the movement effect, basically the pixels gets the bottom pixel value decreased by an decay variable that receive an random value in range of 0 to 2.
+For give the wind effect you only need to add or dec the decay value in the index of the current calculating pixel, remebering that the decay is an float value, and you need to add her using the floor function.
 
 You can run this project [here](https://raffa064.github.io/DoomFire/)
