@@ -42,7 +42,7 @@ With that, adding other forms of input to the canvas is simple, bud it can too b
 ## Smooth color effect 
 ![algorithm](/imgs/algorithm.gif)
 
-For tahe the smooth color and the movement effect, basically the pixels gets the bottom pixel value decreased by an decay variable that receive an random value in range of 0 to 2.
+For take the smooth color and the movement effect, basically the pixels gets the bottom pixel value decreased by an decay variable that receive an random value in range of 0 to 2.
 For give the wind effect you only need to add or dec the decay value in the index of the current calculating pixel, remebering that the decay is an float value, and you need to add her using the floor function.
 
 You can run this project [here](https://raffa064.github.io/DoomFire/)
